@@ -1,0 +1,53 @@
+<h1>Hello routing</h1>
+<h2>Normal Heading</h2>
+<h2 appCustomStyle>Custom Heading</h2>
+<a routerLink="user">User</a><br><br>
+<a routerLink="admin">Admin</a><br><br>
+<a routerLink="about">About</a><br><br>
+<h1>Show data from API</h1>
+<table border="1">
+    <tr>
+        <td>Id</td>
+        <td>Title</td>
+        <td>User Id</td>
+    </tr>
+    <tr *ngFor="let item of data">
+        <td>{{item.id}}</td>
+        <td>{{item.title}}</td>
+        <td>{{item.userId}}</td>
+    </tr>
+</table>
+<h1>Angular Template Driven Form with Validation</h1>
+
+<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" email name="useremail" 
+      ngModel aria-describedby="emailHelp" placeholder="Enter email"
+      #email="ngModel" required>
+      <span *ngIf="email.invalid && email.touched" 
+      class="error"> Email is not Valid</span>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" required maxlength="10" minlength="10" #password="ngModel" class="form-control" name="password" ngModel placeholder="Password">
+      <span *ngIf="password.invalid && password.touched" 
+      class="error"> Password is not Valid</span>
+    </div>
+    
+    <div class="form-group">
+        <label for="exampleInputPassword1">Mobile</label>
+        <input type="text" minlength="8" required maxlength="12" #mobile="ngModel" class="form-control" name="mobile" ngModel placeholder="Mobile">
+        <span *ngIf="mobile.invalid && mobile.touched" 
+      class="error"> Contact is not Validate</span>
+    </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Address</label>
+        <input  pattern="[A-Za-z ]*"  type="text" #address="ngModel"  required class="form-control" name="address" ngModel placeholder="Address">
+        <span *ngIf="address.invalid && address.touched" 
+      class="error"> Address is not Valid</span>
+    </div>
+    <button type="submit" [disabled]="userForm.invalid" class="btn btn-primary">Submit</button>
+  </form>
+
+<router-outlet></router-outlet>
